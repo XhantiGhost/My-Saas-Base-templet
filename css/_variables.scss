@@ -1,0 +1,16 @@
+// these are variables to tARGET all the differnet
+// color you may want to use.
+
+$primary-color: #272727;
+$accent-color: #ff652f;
+$text-color: #fff;
+
+$font-weights: (
+    "regular": 400,
+    "medium": 500,
+    "bold": 700 
+);
+
+// create a variable for the media query called mobile
+
+$mobile: 800px;

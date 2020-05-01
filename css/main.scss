@@ -1,0 +1,82 @@
+@import './resepets';
+@import './variables';
+@import './functions';
+
+
+
+
+// mixin is used for all the data you dont wanna
+// repeat writing all the the time
+
+@mixin flexCenter($direction)   {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: $direction;
+}
+
+
+@mixin theme($light-theme: true) {
+    @if $light-theme {
+        background: lighten($primary-color, 100%);
+        color: darken($text-color, 100%);
+    }
+}
+
+// mixin that has to do with media queries
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+
+
+// how to target the body tag by just using the variables
+
+body {
+    background: $primary-color;
+    color: $text-color;
+}
+
+// target the main class
+.main {
+    @include flexCenter(row);
+    width: 80%;
+    margin: 0 auto;
+    
+
+
+    //to target classes with you main class
+    // e.g this paragraph class using its class name
+    //  instead of just using p tag
+
+    #{&}__paragraph1 {
+
+        font-weight: weight(bold);
+        
+        // adding a hover effect
+
+        &:hover {
+
+            color: pink;
+        }
+    }
+
+
+    #{&}__paragraph2 {
+        @extend .main__paragraph1;
+        
+      &:hover {
+          color: green;
+      }  
+    }
+
+    @include mobile() {
+        flex-direction: column;
+    }
+}
+
+.light {
+    @include theme($light-theme: true);  
+}
